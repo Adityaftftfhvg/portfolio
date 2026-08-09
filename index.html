@@ -255,7 +255,7 @@
   }
   .copy-toast.show{opacity:1;}
 
-
+  /* ───────── FOOTER ───────── */
   footer{border-top:1px solid var(--border);padding:2.2rem 3rem;text-align:center;font-size:0.84rem;color:var(--muted-2);}
 
   /* ───────── BACK TO TOP ───────── */
@@ -267,7 +267,7 @@
   #toTop.show{opacity:1;pointer-events:auto;}
   #toTop:hover{background:var(--teal);transform:translateY(-2px);}
 
-  
+  /* ───────── SCROLL REVEAL ───────── */
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease, transform .5s ease;}
   .reveal.visible{opacity:1;transform:translateY(0);}
   @media (prefers-reduced-motion: reduce){
@@ -275,7 +275,7 @@
     .eyebrow .dot{animation:none;}
   }
 
- 
+  /* ───────── RESPONSIVE ───────── */
   @media (max-width: 768px){
     nav{padding:1rem 1.4rem;}
     .nav-links{display:none;}
@@ -312,9 +312,9 @@
 
 <div class="hero" id="top">
   <div class="hero-inner">
-    <div class="eyebrow reveal visible"><span class="dot"></span>Open to full-stack internships</div>
+    <div class="eyebrow reveal visible"><span class="dot"></span>Open to full-stack placements and internships</div>
     <h1 class="headline reveal visible">Hi, I'm Aditya —<br/>I build <span class="role" id="roleText">full-stack apps</span>.</h1>
-    <p class="hero-sub reveal visible">Third-year <b>Electronics &amp; Communication Engineering</b> student at BIT Mesra who fell hard for web development. Right now that means shipping <b>AI-integrated MERN applications</b>, chasing down bugs in production, and getting better at the parts that don't show up in a demo.</p>
+    <p class="hero-sub reveal visible">Final-year <b>Electronics &amp; Communication Engineering</b> student at BIT Mesra who fell hard for web development. Right now that means shipping <b>AI-integrated MERN applications</b>, chasing down bugs in production, and getting better at the parts that don't show up in a demo.</p>
     <div class="hero-actions reveal visible">
       <a class="btn-primary" href="#projects">See my work</a>
       <a class="btn-outline" href="https://www.linkedin.com/in/aditya-pathak-90a9a6285" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
@@ -507,7 +507,7 @@
 <section>
   <div class="contact-wrap reveal">
     <div class="contact-title">Let's build something great.</div>
-    <p class="contact-sub">I'm actively looking for full-stack internship opportunities — if there's a fit, I'd love to hear from you.</p>
+    <p class="contact-sub">I'm actively looking for full-stack placement and internship opportunities — if there's a fit, I'd love to hear from you.</p>
     <div class="contact-actions">
       <button class="btn-primary" id="copyEmailBtn" type="button">Copy email</button>
       <a class="btn-outline" href="mailto:pathakaditya423@gmail.com">Email me ↗</a>
@@ -520,13 +520,13 @@
 </section>
 
 <footer>
-  Aditya Pathak · BIT Mesra, ECE '27 · Built with care.
+  Aditya Pathak · BIT Mesra, ECE '27
 </footer>
 
 <button id="toTop" aria-label="Back to top">↑</button>
 
 <script>
- 
+  // scroll reveal
   const observer = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
@@ -537,7 +537,7 @@
     observer.observe(el);
   });
 
- 
+  // role cycling text in hero
   const roles = ['full-stack apps.', 'AI-integrated tools.', 'things people actually use.'];
   const roleEl = document.getElementById('roleText');
   let ri = 0;
@@ -548,7 +548,7 @@
   }, 2800);
   roleEl.style.transition = 'opacity .25s ease';
 
-  
+  // project filter
   const filterBtns = document.querySelectorAll('.filter-btn');
   const projCards = document.querySelectorAll('.proj-card');
   filterBtns.forEach(btn=>{
@@ -563,13 +563,13 @@
     });
   });
 
-  
+  // mobile menu toggle
   const navToggle = document.getElementById('navToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   navToggle.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
   mobileMenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> mobileMenu.classList.remove('open')));
 
-  
+  // scroll spy
   const sections = ['experience','projects','skills','education'].map(id=>document.getElementById(id));
   const navAnchors = document.querySelectorAll('.nav-links a');
   const spy = new IntersectionObserver((entries)=>{
@@ -583,14 +583,14 @@
   }, { rootMargin: '-45% 0px -50% 0px' });
   sections.forEach(s=> s && spy.observe(s));
 
-  
+  // back to top
   const toTop = document.getElementById('toTop');
   window.addEventListener('scroll', ()=>{
     toTop.classList.toggle('show', window.scrollY > 600);
   });
   toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
 
-  
+  // copy email
   const copyBtn = document.getElementById('copyEmailBtn');
   const copyToast = document.getElementById('copyToast');
   copyBtn.addEventListener('click', async ()=>{
